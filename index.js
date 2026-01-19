@@ -10,6 +10,8 @@ const products = [
     { id: 3, name: 'Pepsi', price: 0.5, qty: 19 },
 ];
 
+// const products = [];
+
 // get all products
 app.get('/api/v1/products', (req, res) => {
     res.json({
@@ -46,7 +48,16 @@ app.get('/api/v1/product',(req,res)=>{
 
 // create product
 app.post('/api/v1/products',(req,res)=>{
-    const prod = req.body;
+    const {name,price,qty} = req.body;
+    let id = (products.length >= 1) ? (products.length + 1) : 1;
+
+    let prod = {
+        "id" : id,
+        "name" : name,
+        "price" : price,
+        "qty" : qty
+    }
+
     products.push(prod);
 
     res.json({
