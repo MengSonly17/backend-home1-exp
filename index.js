@@ -49,7 +49,7 @@ app.get('/api/v1/product',(req,res)=>{
 // create product
 app.post('/api/v1/products',(req,res)=>{
     const {name,price,qty} = req.body;
-    let id = (products.length >= 1) ? (products.length + 1) : 1;
+    let id = (products.length >= 1) ? (products[products.length-1].id  + 1) : 1;
 
     let prod = {
         "id" : id,
@@ -59,6 +59,8 @@ app.post('/api/v1/products',(req,res)=>{
     }
 
     products.push(prod);
+
+    console.log(products)
 
     res.json({
         'message' : 'Create Product was successfully.',
